@@ -1,30 +1,33 @@
 import { useState , useEffect} from "react";
 import CommentCard from "./CommentCard";
 
+// create helper function setComments -> save to LS
+// split into 2 components InputCommentCard and CommentListCard and move state to parent component
 
 function InputCommentCard() {
   const [text, setText] = useState("");
-  const [comments, setComments] = useState<string[]>([]);
+  const maxCommentLength = 1000;
 
-  useEffect(() => {
+  const [comments, setComments] = useState<string[]>(() => {
     const saved = localStorage.getItem("PostedComments");
-    if (saved) {
-      setComments(JSON.parse(saved));
-    }}, []);
-
+    return saved ? JSON.parse(saved) : [];
+  });
 
   useEffect(() => {
     localStorage.setItem("PostedComments", JSON.stringify(comments));
   }, [comments]);
 
+
   const addPost = () => {
     if (!text.trim()) return;
     setComments((current) => [text.trim(), ...current]);
     setText("");
+    // setComments(comments)
   };
 
   const handleDelete = (id: number) => {
     setComments((current) => current.filter((_, index) => index !== id - 1));
+    // setComments(comments
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -33,9 +36,12 @@ function InputCommentCard() {
         addPost();
     }
     }
+
+  
   return (
-    <div className="d-flex flex-column align-items-center gap-3">
-      <div className="card w-50 p-3">
+    <div className="absolute inset-0 h-full w-full bg-[#FEFDFA] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[36px_36px]">
+    <div className="d-flex flex-column align-items-center gap-3  mt-10">
+      <div className="card w-50 p-3 border-solid border-2 border-brown-500">
         <button
           onClick={() => setText("")}
           type="button"
@@ -51,13 +57,14 @@ function InputCommentCard() {
           value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={handleKeyDown}
+          style={{ fontSize: 20 }}
         />
         
         <button
           onClick={addPost}
           type="button"
-          disabled={!text.trim()}
-          className="btn place-self-end mt-2"
+          disabled={!text.trim() || text.length > maxCommentLength}
+          className="btn btn-primary place-self-end mt-2"
         >
           Post
         </button>
@@ -71,7 +78,9 @@ function InputCommentCard() {
         ))}
       </div>
     </div>
+    </div>
   );
+  
 }
 
 export default InputCommentCard;
