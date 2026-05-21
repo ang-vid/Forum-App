@@ -1,33 +1,22 @@
-import { useState , useEffect} from "react";
+import { useState } from "react";
 import CommentCard from "./CommentCard";
+import { setComments } from "../helpers/setComments";
 
-// create helper function setComments -> save to LS
 // split into 2 components InputCommentCard and CommentListCard and move state to parent component
 
 function InputCommentCard() {
   const [text, setText] = useState("");
   const maxCommentLength = 1000;
 
-  const [comments, setComments] = useState<string[]>(() => {
-    const saved = localStorage.getItem("PostedComments");
-    return saved ? JSON.parse(saved) : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem("PostedComments", JSON.stringify(comments));
-  }, [comments]);
-
+  const { comments, addComment, deleteComment } = setComments();
 
   const addPost = () => {
-    if (!text.trim()) return;
-    setComments((current) => [text.trim(), ...current]);
+    addComment(text);
     setText("");
-    // setComments(comments)
   };
 
   const handleDelete = (id: number) => {
-    setComments((current) => current.filter((_, index) => index !== id - 1));
-    // setComments(comments
+    deleteComment(id);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {

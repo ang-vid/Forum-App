@@ -1,8 +1,8 @@
-import React from "react";
 
-const urlRegex = /(((https?:\/\/)|(www\.))[^\s]+)/gi;
 
-export function linkifyText(text: string): React.ReactNode[] {
+const urlRegex = /((?:https?:\/\/|www\.)[^\s]+)/gi;
+
+export function linkifyText(text: string): React.ReactNode {
   const parts = text.split(urlRegex);
 
   return parts.map((part, index) => {
