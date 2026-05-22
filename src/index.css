@@ -17,3 +17,17 @@ body {
     linear-gradient(to bottom, #80808012 1px, transparent 1px);
   background-size: 24px 24px;
 }
+
+.btn {
+  border-radius: 0 !important;
+  border: 2px solid !important;
+  font-size: 20px;
+  padding-top: 1px !important;
+  padding-bottom: 1px !important;
+}
+
+.card {
+  border-radius: 0 !important;
+  border: 2px solid !important;
+  border-color: #ebd1d194 !important;
+}

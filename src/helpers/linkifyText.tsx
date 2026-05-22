@@ -1,4 +1,4 @@
-
+import { isYoutubeLink } from "../helpers/youtubeEmbed";
 
 const urlRegex = /((?:https?:\/\/|www\.)[^\s]+)/gi;
 
@@ -11,9 +11,11 @@ export function linkifyText(text: string): React.ReactNode {
     const isUrl = part.match(urlRegex);
     if (isUrl) {
       const href = /^https?:\/\//i.test(part) ? part : `https://${part}`;
+      if (isYoutubeLink(href)) {
+        console.log("YouTube link detected:", href);
+      }
       return (
-        // before for some reason using tailwind text-pink-500 underline wasnt working?????
-        <a key={index} href={href} target="_blank" rel="noopener noreferrer" style={{ color: "#F1A9C1", textDecoration: "underline" }}>
+        <a key={index} href={href} target="_blank" rel="noopener noreferrer" className="!text-red-200 !underline">
           {part}
         </a>
       );

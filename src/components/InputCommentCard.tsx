@@ -30,14 +30,14 @@ function InputCommentCard() {
   return (
     <div className="absolute inset-0 h-full w-full bg-[#FEFDFA] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[36px_36px]">
     <div className="d-flex flex-column align-items-center gap-3  mt-10">
-      <div className="card w-50 p-3 border-solid border-2 border-brown-500">
+      <div className="card w-50 p-3">
         <button
           onClick={() => setText("")}
           type="button"
           disabled={!text.trim()}
-          className="btn place-self-end mb-2 text-sm text-gray-500 hover:text-gray-700"
+          className="btn place-self-end mb-2 px-2"
         >
-          Clear
+          clear
         </button>
         <textarea
           className="form-control"
@@ -53,9 +53,9 @@ function InputCommentCard() {
           onClick={addPost}
           type="button"
           disabled={!text.trim() || text.length > maxCommentLength}
-          className="btn btn-primary place-self-end mt-2"
+          className="btn place-self-end mt-2 px-4"
         >
-          Post
+          POST
         </button>
 
         

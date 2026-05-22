@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-
+// izmenit na useComments
 export function setComments() {
   const [comments, setComments] = useState<string[]>(() => {
     const saved = localStorage.getItem("PostedComments");
