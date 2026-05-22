@@ -1,7 +1,5 @@
-import InputCommentCard from "../components/InputCommentCard";
+import CommentListCard from "../components/CommentListCard";
 
 export default function Home() {
-
-  
-  return <InputCommentCard />;
+  return <CommentListCard />;
 }

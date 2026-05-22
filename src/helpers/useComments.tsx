@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
 // izmenit na useComments
-export function setComments() {
-  const [comments, setComments] = useState<string[]>(() => {
+export function useComments() {
+  const [comments, useComments] = useState<string[]>(() => {
     const saved = localStorage.getItem("PostedComments");
     return saved ? JSON.parse(saved) : [];
   });
@@ -13,11 +13,11 @@ export function setComments() {
 
   const addComment = (text: string) => {
     if (!text.trim()) return;
-    setComments((current) => [text.trim(), ...current]);
+    useComments((current) => [text.trim(), ...current]);
   };
 
   const deleteComment = (id: number) => {
-    setComments((current) => current.filter((_, index) => index !== id - 1));
+    useComments((current) => current.filter((_, index) => index !== id - 1));
   };
 
   return {
