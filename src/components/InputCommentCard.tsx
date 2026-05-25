@@ -22,17 +22,17 @@ function InputCommentCard({ addComment }: Props) {
   };
 
   return (
-    <div className="card w-50 p-3">
+    <div className="w-1/2 border-2 border-[#ebd1d194] bg-white p-3">
       <button
         onClick={() => setText("")}
         type="button"
         disabled={!text.trim()}
-        className="btn place-self-end mb-2 px-2"
+        className="mb-2 ml-auto border-2 border-black px-2 py-1 disabled:opacity-50"
       >
         clear
       </button>
       <textarea
-        className="form-control"
+        className="w-full border-2 border-black opacity-50 p-2 outline-none"
         rows={3}
         placeholder="Tut tvij text: "
         value={text}
@@ -44,7 +44,7 @@ function InputCommentCard({ addComment }: Props) {
         onClick={addPost}
         type="button"
         disabled={!text.trim() || text.length > maxCommentLength}
-        className="btn place-self-end mt-2 px-4"
+        className="mt-2 ml-auto border-2 border-black px-4 py-1 disabled:opacity-50"
       >
         POST
       </button>
