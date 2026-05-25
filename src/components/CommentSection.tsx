@@ -10,8 +10,24 @@ function CommentSection() {
   };
 
   return (
-    <div className="absolute inset-0 h-full w-full bg-[#FEFDFA] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[36px_36px]">
-    <div className="mt-10 flex flex-col items-center gap-3">
+<div className="min-h-screen w-full" >
+    <div className="w-full flex justify-center pt-6 pb-0">
+      <h1
+        className="flex items-center gap-4 text-9xl text-[#2B2727] translate-x-3"
+        style={{ fontFamily: "Pixel" }}
+      >
+        <span>Anon</span>
+
+        <img
+          src="src/assets/BLogo.svg"
+          alt="Logo"
+          className="w-30 h-30 object-contain"
+        />
+
+        <span>Forum</span>
+      </h1>
+  </div>
+        <div className="mt-10 flex flex-col items-center gap-3">
           <InputCommentCard addComment={addComment} />
 
         <div className="flex w-1/2 flex-col gap-3">

@@ -28,6 +28,8 @@ type Props = {
   text: string;
 };
 
+type SegmentType = Segment["type"];
+
 function getYoutubeVideoId(url: string): string {
   if (url.includes("watch?v=")) {
     return url.split("watch?v=")[1].split("&")[0];
@@ -71,49 +73,22 @@ function getInstagramPostId(url: string): string {
   return url;
 }
 
-function mapToSegments(text: string): Segment[] {
-  return text.split(" ").map((word) => {
-    if (word.includes("instagram.com")) {
-    return {
-        type: "instagram",
-        content: word,
-        };
-    }
 
-    if (word.includes("tiktok.com")) {
-      return {
-        type: "tiktok",
-        content: word,
-      };
-    }
+function getSegmentType(word: string): SegmentType {
+  if (word.includes("instagram.com")) return "instagram";
+  if (word.includes("tiktok.com")) return "tiktok";
+  if (word.includes("youtube.com") || word.includes("youtu.be")) return "youtube";
+  if (word.startsWith("http://") || word.startsWith("https://")) return "link";
 
-    if (
-      word.includes("youtube.com") ||
-      word.includes("youtu.be")
-    ) {
-      return {
-        type: "youtube",
-        content: word,
-      };
-    }
-
-    if (
-      word.startsWith("http://") ||
-      word.startsWith("https://")
-    ) {
-      return {
-        type: "link",
-        content: word,
-      };
-    }
-
-    return {
-      type: "text",
-      content: word,
-    };
-  });
+  return "text";
 }
 
+function mapToSegments(text: string): Segment[] {
+  return text.split(" ").map((word) => ({
+    type: getSegmentType(word),
+    content: word,
+  }));
+}
 export default function LinkifiedText({ text }: Props) {
   const segments = mapToSegments(text);
 

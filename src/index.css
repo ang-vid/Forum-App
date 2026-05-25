@@ -6,16 +6,10 @@
 body {
   font-family: 'Pixel';
   font-size: 20px;
-}
-
-.grid {
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  width: 100%;
+  background-color: #FEFDFA;
   background-image: linear-gradient(to right, #80808012 1px, transparent 1px),
     linear-gradient(to bottom, #80808012 1px, transparent 1px);
-  background-size: 24px 24px;
+  background-size: 36px 36px;
 }
 
 .btn {
@@ -26,8 +20,5 @@ body {
   padding-bottom: 1px  ;
 }
 
-.card {
-  border-radius: 0  ;
-  border: 2px solid  ;
-  border-color: #ebd1d194  ;
-}
+
+

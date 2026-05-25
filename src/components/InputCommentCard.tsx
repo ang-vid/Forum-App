@@ -27,7 +27,7 @@ function InputCommentCard({ addComment }: Props) {
         onClick={() => setText("")}
         type="button"
         disabled={!text.trim()}
-        className="mb-2 ml-auto border-2 border-black px-2 py-1 disabled:opacity-50"
+        className="btn mb-2 ml-auto border-2 border-black px-2 py-1 disabled:opacity-50"
       >
         clear
       </button>
@@ -44,7 +44,7 @@ function InputCommentCard({ addComment }: Props) {
         onClick={addPost}
         type="button"
         disabled={!text.trim() || text.length > maxCommentLength}
-        className="mt-2 ml-auto border-2 border-black px-4 py-1 disabled:opacity-50"
+        className="btn mt-2 ml-auto border-2 border-black px-4 py-1 disabled:opacity-50"
       >
         POST
       </button>

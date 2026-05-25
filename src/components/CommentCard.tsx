@@ -23,10 +23,10 @@ function CommentCard({ id, text, onDelete }: Props) {
         <LinkifiedText text={text} />
       </p>
 
-      <div className="mt-2 flex justify-end gap-2 w-full">
+      <div className="mt-2 flex justify-start gap-2 w-full">
         <button
           type="button"
-          className="border-2 border-red-500 px-3 py-1 text-sm text-red-500 hover:bg-red-500 hover:text-white"
+          className="btn border-2 border-red-500 px-3 py-1 text-sm text-red-500 hover:bg-red-500 hover:text-white"
           onClick={() => onDelete?.(id)}
         >
           Delete
@@ -35,7 +35,7 @@ function CommentCard({ id, text, onDelete }: Props) {
         <Link
           to={`/post/${id}`}
           state={{ text }}
-          className="border-2 border-gray-500 px-3 py-1 text-sm text-gray-600 hover:bg-gray-500 hover:text-white"
+          className="btn border-2 border-gray-500 px-3 py-1 text-sm text-gray-600 hover:bg-gray-500 hover:text-white"
         >
           View
         </Link>
