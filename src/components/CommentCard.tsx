@@ -27,14 +27,7 @@ function CommentCard({ id, text, createdAt, onDelete }: Props) {
 
     {/* main comment box */}
     <div className="border-3 border-[#2B2727] bg-white px-6 pt-5 pb-3 mt-3 mb-4 shadow-[2px_2px_0_#2B2727]">
-      <p
-        className="leading-7 text-[#2B2727]"
-        style={{
-          whiteSpace: "pre-wrap",
-          wordBreak: "break-word",
-          overflowWrap: "break-word",
-        }}
-      >
+      <p className="leading-7 text-[#2B2727] whitespace-pre-wrap break-words">
         <LinkifiedText text={text} />
       </p>
       

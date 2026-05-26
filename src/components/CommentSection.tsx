@@ -12,10 +12,7 @@ function CommentSection() {
   return (
 <div className="min-h-screen w-full" >
     <div className="w-full flex justify-center pt-6 pb-0">
-      <h1
-        className="flex items-center gap-4 text-9xl text-[#2B2727] translate-x-3"
-        style={{ fontFamily: "Pixel" }}
-      >
+      <h1 className="flex items-center gap-4 text-9xl text-[#2B2727] translate-x-3">
         <span>Anon</span>
 
         <img
