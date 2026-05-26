@@ -30,7 +30,7 @@ type Props = {
 
 type SegmentType = Segment["type"];
 
-function getYoutubeVideoId(url: string): string {
+function getYoutubeVideoId(url: string) {
   if (url.includes("watch?v=")) {
     return url.split("watch?v=")[1].split("&")[0];
   }
@@ -42,7 +42,7 @@ function getYoutubeVideoId(url: string): string {
   return url;
 }
 
-function getTiktokVideoId(url: string): string {
+function getTiktokVideoId(url: string) {
   const parts = url.split("/video/");
 
   if (parts[1]) {
@@ -52,7 +52,7 @@ function getTiktokVideoId(url: string): string {
   return url;
 }
 
-function getInstagramPostId(url: string): string {
+function getInstagramPostId(url: string) {
   const formats = [
     "/p/",
     "/reel/",
@@ -116,7 +116,7 @@ export default function LinkifiedText({ text }: Props) {
                 href={segment.content}
                 target="_blank"
                 rel="noreferrer"
-                className="text-red-200 underline"
+                className="text-[#F1A9C1] underline"
               >
                 {segment.content}{" "}
               </a>

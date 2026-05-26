@@ -5,10 +5,10 @@
 }
 body {
   font-family: 'Pixel';
-  font-size: 20px;
+  font-size: 24px;
   background-color: #FEFDFA;
-  background-image: linear-gradient(to right, #80808012 1px, transparent 1px),
-    linear-gradient(to bottom, #80808012 1px, transparent 1px);
+  background-image: linear-gradient(to right, #80808042 1px, transparent 1px),
+    linear-gradient(to bottom, #80808042 1px, transparent 1px);
   background-size: 36px 36px;
 }
 
