@@ -1,7 +1,7 @@
 import CommentCard from "./CommentCard";
 import InputCommentCard from "./InputCommentCard";
 import { useComments } from "../helpers/useComments";
-// pomenat
+
 function CommentSection() {
   const { comments, addComment, deleteComment } = useComments();
 
@@ -21,7 +21,7 @@ function CommentSection() {
         <img
           src="src/assets/BLogo.svg"
           alt="Logo"
-          className="w-30 h-30 object-contain"
+          className="w-36 h-36 object-contain"
         />
 
         <span>Forum</span>
@@ -32,7 +32,13 @@ function CommentSection() {
 
         <div className="flex w-1/2 flex-col gap-3">
           {comments.map((comment, index) => (
-            <CommentCard key={index} id={index + 1} text={comment} onDelete={handleDelete} />
+            <CommentCard
+              key={index}
+              id={index + 1}
+              text={comment.text}
+              createdAt={comment.createdAt}
+              onDelete={handleDelete}
+            />
           ))}
         </div>
       </div>
