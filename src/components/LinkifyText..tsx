@@ -30,7 +30,7 @@ type Props = {
 
 type SegmentType = Segment["type"];
 
-function getYoutubeVideoId(url: string) {
+export function getYoutubeVideoId(url: string) {
   if (url.includes("watch?v=")) {
     return url.split("watch?v=")[1].split("&")[0];
   }
@@ -42,7 +42,7 @@ function getYoutubeVideoId(url: string) {
   return url;
 }
 
-function getTiktokVideoId(url: string) {
+export function getTiktokVideoId(url: string) {
   const parts = url.split("/video/");
 
   if (parts[1]) {
@@ -52,7 +52,7 @@ function getTiktokVideoId(url: string) {
   return url;
 }
 
-function getInstagramPostId(url: string) {
+export function getInstagramPostId(url: string) {
   const formats = [
     "/p/",
     "/reel/",
@@ -74,7 +74,7 @@ function getInstagramPostId(url: string) {
 }
 
 
-function getSegmentType(word: string): SegmentType {
+export function getSegmentType(word: string): SegmentType {
   if (word.includes("instagram.com")) return "instagram";
   if (word.includes("tiktok.com")) return "tiktok";
   if (word.includes("youtube.com") || word.includes("youtu.be")) return "youtube";
@@ -83,7 +83,7 @@ function getSegmentType(word: string): SegmentType {
   return "text";
 }
 
-function mapToSegments(text: string): Segment[] {
+export function mapToSegments(text: string): Segment[] {
   return text.split(" ").map((word) => ({
     type: getSegmentType(word),
     content: word,
