@@ -44,7 +44,6 @@ function CommentCard({ id, text, createdAt, onDelete }: Props) {
 
       <Link
         to={`/post/${id}`}
-        state={{ text }}
         className="btn border-[#2B2727] text-[#2B2727] hover:bg-[#2B2727] hover:text-white py-2 px-2"
       >
         View
