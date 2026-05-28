@@ -6,7 +6,6 @@ import {
   getSegmentType,
   mapToSegments,
 } from '../components/LinkifyText..tsx'
-// make tests not only for happy paths but also for edge cases and invalid inputs
 describe('getYoutubeVideoId', () => {
     it('extracts id from watch?v= url', () => {
         expect(getYoutubeVideoId('https://www.youtube.com/watch?v=dQw4w9WgXcQ')).toBe('dQw4w9WgXcQ')
@@ -49,6 +48,46 @@ describe('getYoutubeVideoId', () => {
         expect(getInstagramPostId('https://www.instagram.com/tv/CXx1234abcD/')).toBe('CXx1234abcD')
     })
     })
+
+describe('getYoutubeVideoId edge cases', () => {
+    it('returns just a link when there is no video id (youtube.com)', () => {
+        const url = 'https://www.youtube.com'
+        expect(getYoutubeVideoId(url)).toBe(url)
+    })
+
+    it('returns just a link when there is no video id  (youtu.be)', () => {
+        const url = 'https://youtu.be'
+        expect(getYoutubeVideoId(url)).toBe(url)
+    })
+
+    it('returns empty string when youtu.be has slash but no id', () => {
+        expect(getYoutubeVideoId('https://youtu.be/')).toBe('')
+    })
+    it('works with www without http/https', () => {
+    expect(getSegmentType('www.youtube.com')).toBe('youtube')
+  })
+})
+
+describe('getTiktokVideoId edge cases', () => {
+    it('returns just a link when no /video/ segment exists', () => {
+        const url = 'https://www.tiktok.com'
+        expect(getTiktokVideoId(url)).toBe(url)
+    })
+    it('works with www without http/https', () => {
+    expect(getSegmentType('www.tiktok.com')).toBe('tiktok')
+  })
+})
+
+describe('getInstagramPostId edge cases', () => {
+    it('returns just a link when no id is there', () => {
+        const url = 'https://www.instagram.com'
+        expect(getInstagramPostId(url)).toBe(url)
+    })
+    it('works with www without http/https', () => {
+    expect(getSegmentType('www.instagram.com')).toBe('instagram')
+  })
+})
+
 
     describe('getSegmentType', () => {
     it('detects youtube.com', () => {

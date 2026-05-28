@@ -14,7 +14,7 @@ export default function PostDetail() {
   );
 
   const post = comments[Number(id) - 1];
-
+  // error 404 with react router if post is not found, instead of just showing "Post not found"§
   if (!post) {
     return <div>Post not found</div>;
   }
@@ -29,3 +29,5 @@ export default function PostDetail() {
     </div>
   );
 }
+
+// think about bold/italiks
