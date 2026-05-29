@@ -1,10 +1,10 @@
 @import "tailwindcss";
 @font-face {
-	font-family: "Pixel", sans-serif;
+	font-family: "Pixel";
 	src: url("/fonts/PixelPurl.ttf") format("truetype");
 }
 body {
-	font-family: "Pixel", sans-serif;
+	font-family: "Pixel";
 	font-size: 24px;
 	background-color: #fefdfa;
 	background-image:

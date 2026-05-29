@@ -63,4 +63,25 @@ test("link in post text is linkified and visible", async ({ page }) => {
 	await expect(link).toHaveAttribute("href", "https://example.com");
 });
 
+
+test("redirect to 404 error if link goes to non existing page", async ({
+  page,
+}) => {
+    await page.goto("http://localhost:5173");
+    await page.evaluate(() => localStorage.clear());
+    await page.getByPlaceholder("Write your post...").fill("http://localhost:5173/fakepage");
+    await page.getByRole("button", { name: "SEND" }).click();
+
+    await page.getByRole("link", { name: "View" }).first().click();
+    await expect(page).toHaveURL(/\/post\/1/);
+    
+    const [newTab] = await Promise.all([
+      page.context().waitForEvent("page"),
+      page.getByRole("link", { name: "http://localhost:5173/fakepage" }).click(),
+    ]);
+
+    await newTab.waitForLoadState();
+    await expect(newTab).toHaveURL("http://localhost:5173/fakepage");
+    await expect(newTab.getByText("Page not found")).toBeVisible();
+});
 // 404 error if link goess to non existing page

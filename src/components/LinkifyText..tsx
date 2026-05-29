@@ -69,14 +69,23 @@ export function getInstagramPostId(url: string) {
 }
 
 export function getSegmentType(word: string): SegmentType {
-	if (word.includes("instagram.com")) return "instagram";
-	if (word.includes("tiktok.com")) return "tiktok";
-	if (word.includes("youtube.com") || word.includes("youtu.be"))
-		return "youtube";
+	if (word.includes("instagram.com")) {
+		const formats = ["/p/", "/reel/", "/reels/", "/tv/"];
+		if (formats.some((f) => word.includes(f))) return "instagram";
+		return word.startsWith("http://") || word.startsWith("https://") ? "link" : "instagram";
+	}
+	if (word.includes("tiktok.com")) {
+		if (word.includes("/video/")) return "tiktok";
+		return word.startsWith("http://") || word.startsWith("https://") ? "link" : "tiktok";
+	}
+	if (word.includes("youtube.com") || word.includes("youtu.be")) {
+		if (word.includes("watch?v=") || (word.includes("youtu.be/") && word.split("youtu.be/")[1])) return "youtube";
+		return word.startsWith("http://") || word.startsWith("https://") ? "link" : "youtube";
+	}
 	if (word.startsWith("http://") || word.startsWith("https://")) return "link";
-
 	return "text";
 }
+
 
 export function mapToSegments(text: string): Segment[] {
 	return text.split(" ").map((word) => ({

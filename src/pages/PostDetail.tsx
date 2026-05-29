@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { redirect, useParams } from "react-router-dom";
 import LinkifyText from "../components/LinkifyText..tsx";
 
 type Comment = {
@@ -16,7 +16,7 @@ export default function PostDetail() {
 	const post = comments[Number(id) - 1];
 	// error 404 with react router if post is not found, instead of just showing "Post not found"§
 	if (!post) {
-		return <div>Post not found</div>;
+		redirect("/404");
 	}
 
 	return (
